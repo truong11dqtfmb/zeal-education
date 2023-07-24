@@ -29,7 +29,7 @@ namespace Zeal_education.Controllers
             {
                 if (user.Password != user.ConfirmPassword)
                 {
-                    return BadRequest("Password does not match");
+                    return BadRequest(ResponseMessage.error("Password does not match"));
                 }
                 var checkuser = _context.Users.SingleOrDefault(x => x.Email == user.Email);
                 if (checkuser == null)
@@ -43,18 +43,18 @@ namespace Zeal_education.Controllers
                     };
                     _context.Users.Add(newuser);
                     _context.SaveChanges();
-                    return Ok("registor successfully");
 
+                    return Ok(ResponseMessage.ok("Registration Account successfully. ", newuser));
                 }
                 else
                 {
-                    return BadRequest("Email has already used");
+                    return BadRequest(ResponseMessage.error("Email or Password not valid. "));
                 }
 
             }
-            catch
+            catch(Exception ex) 
             {
-                return BadRequest();
+                return BadRequest(ResponseMessage.error(ex.Message));
             }
         }
         [HttpPost("login")]
@@ -67,16 +67,16 @@ namespace Zeal_education.Controllers
                 if (systemuser != null)
                 {
                     string Token = createToken(systemuser);
-                    return Ok(Token);
+                    return Ok(ResponseMessage.ok("Login Account successfully. ", Token));
                 }
                 else
                 {
-                    return BadRequest("Invalid username password");
+                    return BadRequest(ResponseMessage.error("Email or Password not valid. "));
                 }
             }
             else
             {
-                return BadRequest("null user");
+                return BadRequest(ResponseMessage.error("Email or Password not valid. "));
             }
         }
         private string createToken(User user)
