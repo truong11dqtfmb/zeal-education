@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Zeal_education.props" />
+</Project>

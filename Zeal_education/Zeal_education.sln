@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeal_education", "Zeal_education.csproj", "{DDD8B8E2-FA91-4426-8324-B439DF5F0653}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDD8B8E2-FA91-4426-8324-B439DF5F0653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDD8B8E2-FA91-4426-8324-B439DF5F0653}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDD8B8E2-FA91-4426-8324-B439DF5F0653}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDD8B8E2-FA91-4426-8324-B439DF5F0653}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {86AF2C71-88E2-498D-9CDF-CE73202E28BB}
+	EndGlobalSection
+EndGlobal
