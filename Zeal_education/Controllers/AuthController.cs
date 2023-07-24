@@ -96,7 +96,6 @@ namespace Zeal_education.Controllers
                 expires: DateTime.Now.AddDays(1),
                 signingCredentials: cred
             );
-
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
             return jwt;
         }

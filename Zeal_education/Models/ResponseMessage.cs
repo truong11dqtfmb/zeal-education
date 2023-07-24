@@ -8,13 +8,14 @@
 
         public ResponseMessage() { }
 
-        public ResponseMessage(Boolean success, String message, Object data) { 
+        public ResponseMessage(Boolean success, String message, Object data)
+        {
             this.success = success;
             this.message = message;
             this.data = data;
         }
 
-        public ResponseMessage error(String mes)
+        public static ResponseMessage error(String mes)
         {
             ResponseMessage message = new ResponseMessage();
             message.success = false;
@@ -23,7 +24,7 @@
             return message;
         }
 
-        public ResponseMessage error(String mes, Object data)
+        public static ResponseMessage error(String mes, Object data)
         {
             ResponseMessage message = new ResponseMessage();
             message.success = false;
@@ -32,7 +33,7 @@
             return message;
         }
 
-        public ResponseMessage ok(String mes)
+        public static ResponseMessage ok(String mes)
         {
             ResponseMessage message = new ResponseMessage();
             message.success = true;
@@ -41,7 +42,7 @@
             return message;
         }
 
-        public ResponseMessage ok(String mes, Object data)
+        public static ResponseMessage ok(String mes, Object data)
         {
             ResponseMessage message = new ResponseMessage();
             message.success = true;
