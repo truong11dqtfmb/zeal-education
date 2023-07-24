@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "l1Wg/3N6BHsRcDUbA88+1MdKRki/1PzOFP+PbSlpToI2moXK/Tdnv4bJjXQL6V4x9itpItugtZISbcArtcBwrQ==",
+  "dgSpecHash": "uCwtns29r0vB1Y+vF2Mt4t6x5WmNM9mDgyx2Qi/RZ1YRDEWHuC6ZYtLOsSk598xdWeef3hJlM3ASUuslCQ3C+g==",
   "success": true,
-  "projectFilePath": "E:\\csharp\\Zeal_education\\Zeal_education.csproj",
+  "projectFilePath": "D:\\github\\zeal-education\\Zeal_education\\Zeal_education.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.20\\microsoft.aspnetcore.authentication.jwtbearer.6.0.20.nupkg.sha512",

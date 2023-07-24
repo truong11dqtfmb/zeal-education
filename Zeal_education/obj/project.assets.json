@@ -1701,11 +1701,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\csharp\\Zeal_education\\Zeal_education.csproj",
+      "projectUniqueName": "D:\\github\\zeal-education\\Zeal_education\\Zeal_education.csproj",
       "projectName": "Zeal_education",
-      "projectPath": "E:\\csharp\\Zeal_education\\Zeal_education.csproj",
+      "projectPath": "D:\\github\\zeal-education\\Zeal_education\\Zeal_education.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "E:\\csharp\\Zeal_education\\obj\\",
+      "outputPath": "D:\\github\\zeal-education\\Zeal_education\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
