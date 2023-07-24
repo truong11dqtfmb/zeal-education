@@ -1,4 +1,6 @@
-﻿CREATE TABLE `User` (
+﻿CREATE DATABASE zeal_education;
+
+CREATE TABLE `User` (
   `Id` int Primary Key AUTO_INCREMENT,
   `email` varchar(50),
   `password` varchar(50),
