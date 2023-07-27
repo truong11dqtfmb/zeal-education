@@ -15,6 +15,7 @@ namespace Zeal_education.Data
         public string? Note { get; set; }
         public DateTime? OrderDate { get; set; }
         public bool? Status { get; set; }
+        public bool? IsActive { get; set; }
 
         public virtual ICollection<Orderdetail> Orderdetails { get; set; }
     }

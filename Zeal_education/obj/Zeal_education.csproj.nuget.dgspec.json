@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\student\\Desktop\\Zeal\\zeal-education\\Zeal_education\\Zeal_education.csproj": {}
+    "D:\\github\\zeal-education\\Zeal_education\\Zeal_education.csproj": {}
   },
   "projects": {
-    "C:\\Users\\student\\Desktop\\Zeal\\zeal-education\\Zeal_education\\Zeal_education.csproj": {
+    "D:\\github\\zeal-education\\Zeal_education\\Zeal_education.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\student\\Desktop\\Zeal\\zeal-education\\Zeal_education\\Zeal_education.csproj",
+        "projectUniqueName": "D:\\github\\zeal-education\\Zeal_education\\Zeal_education.csproj",
         "projectName": "Zeal_education",
-        "projectPath": "C:\\Users\\student\\Desktop\\Zeal\\zeal-education\\Zeal_education\\Zeal_education.csproj",
-        "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\student\\Desktop\\Zeal\\zeal-education\\Zeal_education\\obj\\",
+        "projectPath": "D:\\github\\zeal-education\\Zeal_education\\Zeal_education.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\github\\zeal-education\\Zeal_education\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -41,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[6.0.20, )"
@@ -97,7 +100,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

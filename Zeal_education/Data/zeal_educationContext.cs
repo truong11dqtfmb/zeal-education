@@ -27,7 +27,7 @@ namespace Zeal_education.Data
         public virtual DbSet<Teacher> Teachers { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
-        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.UseCollation("utf8mb4_0900_ai_ci")
@@ -36,6 +36,10 @@ namespace Zeal_education.Data
             modelBuilder.Entity<Cart>(entity =>
             {
                 entity.ToTable("cart");
+
+                entity.Property(e => e.IsActive)
+                    .HasColumnName("is_active")
+                    .HasDefaultValueSql("'1'");
             });
 
             modelBuilder.Entity<Cartitem>(entity =>
@@ -45,6 +49,10 @@ namespace Zeal_education.Data
                 entity.HasIndex(e => e.CartId, "CartId");
 
                 entity.HasIndex(e => e.CourseId, "CourseId");
+
+                entity.Property(e => e.IsActive)
+                    .HasColumnName("is_active")
+                    .HasDefaultValueSql("'1'");
 
                 entity.HasOne(d => d.Cart)
                     .WithMany(p => p.Cartitems)
@@ -159,6 +167,10 @@ namespace Zeal_education.Data
 
                 entity.HasIndex(e => e.UserId, "UserId");
 
+                entity.Property(e => e.IsActive)
+                    .HasColumnName("is_active")
+                    .HasDefaultValueSql("'1'");
+
                 entity.Property(e => e.TestDate)
                     .HasColumnType("timestamp")
                     .HasColumnName("testDate");
@@ -178,6 +190,10 @@ namespace Zeal_education.Data
             {
                 entity.ToTable("order");
 
+                entity.Property(e => e.IsActive)
+                    .HasColumnName("is_active")
+                    .HasDefaultValueSql("'1'");
+
                 entity.Property(e => e.Note)
                     .HasMaxLength(50)
                     .HasColumnName("note");
@@ -196,6 +212,10 @@ namespace Zeal_education.Data
 
                 entity.HasIndex(e => e.OrderId, "OrderId");
 
+                entity.Property(e => e.IsActive)
+                    .HasColumnName("is_active")
+                    .HasDefaultValueSql("'1'");
+
                 entity.HasOne(d => d.Course)
                     .WithMany(p => p.Orderdetails)
                     .HasForeignKey(d => d.CourseId)
@@ -210,6 +230,10 @@ namespace Zeal_education.Data
             modelBuilder.Entity<Role>(entity =>
             {
                 entity.ToTable("role");
+
+                entity.Property(e => e.IsActive)
+                    .HasColumnName("is_active")
+                    .HasDefaultValueSql("'1'");
 
                 entity.Property(e => e.RoleName)
                     .HasMaxLength(50)
@@ -272,6 +296,8 @@ namespace Zeal_education.Data
                 entity.Property(e => e.Password)
                     .HasMaxLength(50)
                     .HasColumnName("password");
+
+                entity.Property(e => e.RoleId).HasDefaultValueSql("'2'");
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.Users)

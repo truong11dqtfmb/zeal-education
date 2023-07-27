@@ -10,6 +10,7 @@ namespace Zeal_education.Data
         public int? UserId { get; set; }
         public int? Score { get; set; }
         public DateTime? TestDate { get; set; }
+        public bool? IsActive { get; set; }
 
         public virtual Course? Course { get; set; }
         public virtual User? User { get; set; }
