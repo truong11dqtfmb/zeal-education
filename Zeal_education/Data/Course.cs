@@ -19,11 +19,11 @@ namespace Zeal_education.Data
         public int? CategoryId { get; set; }
         public string? Description { get; set; }
         public int? TeacherId { get; set; }
-        public bool? IsActive { get; set; }
         public DateTime? CreateAt { get; set; }
         public string? CreateBy { get; set; }
         public DateTime? ModifyAt { get; set; }
         public string? ModifyBy { get; set; }
+        public bool? IsActive { get; set; }
 
         public virtual Category? Category { get; set; }
         public virtual Teacher? Teacher { get; set; }

@@ -1,5 +1,7 @@
 ﻿CREATE DATABASE zeal_education;
 
+USE zeal_education;
+
 CREATE TABLE `User` (
   `Id` int Primary Key AUTO_INCREMENT,
   `email` varchar(50),
@@ -7,24 +9,25 @@ CREATE TABLE `User` (
   `RoleId` int DEFAULT 2,
   `fullName` varchar(50),
   `dob` timestamp,
-  `is_active` boolean DEFAULT true,
-  `create_at` timestamp DEFAULT CURRENT_TIMESTAMP()
+  `create_at` timestamp DEFAULT CURRENT_TIMESTAMP(),
+  `is_active` boolean DEFAULT true
 );
 
 CREATE TABLE `Role` (
   `Id` int Primary Key AUTO_INCREMENT,
-  `roleName` varchar(50)
+  `roleName` varchar(50),
+  `is_active` boolean DEFAULT true
 );
 
 CREATE TABLE `Category` (
   `id` int Primary Key AUTO_INCREMENT,
   `name` varchar(50),
   `description` varchar(50),
-  `is_active` boolean DEFAULT true,
   `create_at` timestamp DEFAULT CURRENT_TIMESTAMP(),
   `create_by` varchar(50),
   `modify_at` timestamp,
-  `modify_by` varchar(50)
+  `modify_by` varchar(50),
+  `is_active` boolean DEFAULT true
 );
 
 CREATE TABLE `Teacher` (
@@ -32,8 +35,8 @@ CREATE TABLE `Teacher` (
   `fullName` varchar(50),
   `dob` timestamp,
   `description` varchar(50),
-	`is_active` boolean DEFAULT true,
-    `create_at` timestamp DEFAULT CURRENT_TIMESTAMP()
+    `create_at` timestamp DEFAULT CURRENT_TIMESTAMP(),
+	`is_active` boolean DEFAULT true
 );
 
 CREATE TABLE `Course` (
@@ -44,22 +47,24 @@ CREATE TABLE `Course` (
   `CategoryId` int,
   `description` varchar(50),
   `teacherId` int,
-  `is_active` boolean DEFAULT true,
   `create_at` timestamp DEFAULT CURRENT_TIMESTAMP(),
   `create_by` varchar(50),
   `modify_at` timestamp,
-  `modify_by` varchar(50)
+  `modify_by` varchar(50),
+  `is_active` boolean DEFAULT true
 );
 
 CREATE TABLE `Cart` (
   `Id` int Primary Key AUTO_INCREMENT,
-  `UserId` int
+  `UserId` int,
+  `is_active` boolean DEFAULT true
 );
 
 CREATE TABLE `CartItem` (
   `Id` int Primary Key AUTO_INCREMENT,
   `CourseId` int,
-  `CartId` int
+  `CartId` int,
+  `is_active` boolean DEFAULT true
 );
 
 CREATE TABLE `Order` (
@@ -67,13 +72,15 @@ CREATE TABLE `Order` (
   `UserId` int,
   `note` varchar(50),
   `orderDate` timestamp DEFAULT CURRENT_TIMESTAMP(),
-  `Status` boolean
+  `Status` boolean,
+  `is_active` boolean DEFAULT true
 );
 
 CREATE TABLE `OrderDetail` (
   `Id` int Primary Key AUTO_INCREMENT,
   `CourseId` int,
-  `OrderId` int
+  `OrderId` int,
+  `is_active` boolean DEFAULT true
 );
 
 CREATE TABLE `Exam` (
@@ -81,7 +88,8 @@ CREATE TABLE `Exam` (
   `CourseId` int,
   `UserId` int,
   `Score` int,
-  `testDate` timestamp
+  `testDate` timestamp,
+  `is_active` boolean DEFAULT true
 );
 
 ALTER TABLE `User` ADD FOREIGN KEY (`RoleId`) REFERENCES `Role` (`Id`);
@@ -105,7 +113,7 @@ ALTER TABLE `Exam` ADD FOREIGN KEY (`UserId`) REFERENCES `User` (`Id`);
 INSERT INTO `Role`(`roleName`) Value ('Admin');
 INSERT INTO `Role`(`roleName`) VALUE ('User');
 
-INSERT INTO `user`(`email`,`password`,`RoleId`,`fullName`,`dob`) VALUE ('admin@gmail.com','123456',1,'admin',current_timestamp());
+INSERT INTO `user`(`email`,`password`,`RoleId`,`fullName`,`dob`) VALUE ('zealeducationa@gmail.com',SHA1('123456'),1,'admin',current_timestamp());
 
 
 

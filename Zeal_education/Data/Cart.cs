@@ -12,6 +12,7 @@ namespace Zeal_education.Data
 
         public int Id { get; set; }
         public int? UserId { get; set; }
+        public bool? IsActive { get; set; }
 
         public virtual ICollection<Cartitem> Cartitems { get; set; }
     }
