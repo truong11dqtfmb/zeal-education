@@ -6,9 +6,9 @@ using System.Security.Claims;
 using System.Text;
 using Zeal_education.Data;
 using Zeal_education.Models;
-using System.Security.Cryptography;
 using System.Net.Mail;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Zeal_education.Controllers
 {
@@ -43,16 +43,16 @@ namespace Zeal_education.Controllers
                     newuser = new User
                     {
                         Email = user.Email,
-                        Password = Hash(user.Password),
+                        Password = Common.Hash(user.Password),
                         Dob = user.Dob,
                         FullName = user.FullName,
                     };
-                    
-                    verifi_OTP = CreateRandomString();
+
+                    verifi_OTP = CreateRandomString(6);
                     string body = "Your code verify is: " + verifi_OTP;
                     sendEmail("Verifry Email", body, newuser.Email);
 
-                    return Ok(ResponseMessage.ok("please verify your email. ", newuser));
+                    return Ok(ResponseMessage.ok("please verify your email. "));
                 }
                 else
                 {
@@ -60,28 +60,16 @@ namespace Zeal_education.Controllers
                 }
 
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 return BadRequest(ResponseMessage.error(ex.Message));
             }
         }
 
-        private string CreateRandomString()
-        {
-            Random RNG = new Random();
-            int length = 6;
-            var rString = "";
-            for (var i = 0; i < length; i++)
-            {
-                rString += ((char)(RNG.Next(1, 26) + 64)).ToString().ToLower();
-            }
-            return rString;
-        }
-
         [HttpPost("verify")]
         public IActionResult Verify(string otp)
         {
-            if(otp == verifi_OTP)
+            if (otp == verifi_OTP)
             {
                 _context.Users.Add(newuser);
                 _context.SaveChanges();
@@ -94,7 +82,7 @@ namespace Zeal_education.Controllers
         {
             if (user != null)
             {
-                systemuser = _context.Users.SingleOrDefault(x => x.Email == user.Email && x.Password == Hash(user.Password) && x.IsActive == true);
+                systemuser = _context.Users.SingleOrDefault(x => x.Email == user.Email && x.Password == Common.Hash(user.Password) && x.IsActive == true);
 
                 if (systemuser != null)
                 {
@@ -111,6 +99,39 @@ namespace Zeal_education.Controllers
                 return BadRequest(ResponseMessage.error("Email or Password not valid. "));
             }
         }
+
+        [HttpPut("resestpassword")]
+        public IActionResult ResetPassword(string email)
+        {
+            var user = _context.Users.SingleOrDefault(x => x.Email == email && x.IsActive == true);
+            if (user != null)
+            {
+                string resetpassword = CreateRandomString(10);
+                user.Password = Common.Hash(resetpassword);
+                _context.SaveChanges();
+                string body = "Your Password is: " + resetpassword;
+                sendEmail("Reset Password", body, email);
+                return Ok(ResponseMessage.ok("We've sent new password to your email, please check your email"));
+            }
+            return BadRequest(ResponseMessage.error("Your email hasn't been used"));
+        }
+
+        [HttpPut("changepassword")]
+        [Authorize(Roles = "User")]
+        public IActionResult ChangePassword(ChangePasswordModel changepass)
+        {
+            var thisuser = _context.Users.SingleOrDefault(x => x.Id == systemuser.Id && x.IsActive == true);
+            if (Common.Hash(changepass.CurrentPassword) == thisuser.Password)
+            {
+                thisuser.Password = Common.Hash(changepass.NewPassword);
+                _context.SaveChanges();
+                systemuser = thisuser;
+                return Ok(ResponseMessage.ok("Change password sucessfully", thisuser.Password));
+            }
+            return BadRequest(ResponseMessage.error("Your current password is incorrect"));
+        }
+
+
         private string createToken(User user)
         {
             var userrole = _context.Roles.SingleOrDefault(x => x.Id == user.RoleId && x.IsActive == true);
@@ -131,27 +152,10 @@ namespace Zeal_education.Controllers
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
             return jwt;
         }
-        private string Hash(string input)
-        {
-            using (SHA1Managed sha1 = new SHA1Managed())
-            {
-                var hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
-                var sb = new StringBuilder(hash.Length * 2);
-
-                foreach (byte b in hash)
-                {
-                    // can be "x2" if you want lowercase
-                    sb.Append(b.ToString("X2"));
-                }
-
-                return sb.ToString();
-            }
-        }
-
         private void sendEmail(string subject, string body, string to)
         {
             string fromMail = "zealeducationa@gmail.com";
-            string fromPassword = "rbdrmqhehyyzdvuq";
+            string fromPassword = "pzmclcfqeqfwowhy";
 
             MailMessage message = new MailMessage();
             message.From = new MailAddress(fromMail);
@@ -168,5 +172,17 @@ namespace Zeal_education.Controllers
             };
             smtpClient.Send(message);
         }
+        private string CreateRandomString(int length)
+        {
+            Random RNG = new Random();
+            var rString = "";
+            for (var i = 0; i < length; i++)
+            {
+                rString += ((char)(RNG.Next(1, 26) + 64)).ToString().ToLower();
+            }
+            return rString;
+        }
+
+        
     }
 }
