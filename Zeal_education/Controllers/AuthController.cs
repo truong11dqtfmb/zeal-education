@@ -126,7 +126,7 @@ namespace Zeal_education.Controllers
                 thisuser.Password = Common.Hash(changepass.NewPassword);
                 _context.SaveChanges();
                 systemuser = thisuser;
-                return Ok(ResponseMessage.ok("Change password sucessfully", thisuser.Password));
+                return Ok(ResponseMessage.ok("Change password sucessfully"));
             }
             return BadRequest(ResponseMessage.error("Your current password is incorrect"));
         }
