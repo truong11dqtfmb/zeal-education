@@ -1,21 +1,26 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Zeal_education.Data;
 using Zeal_education.Models;
+using Zeal_education.Services;
+using Zeal_education.Utils;
 
 namespace Zeal_education.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles ="Admin")]
     public class CategoryController : ControllerBase
     {
         private zeal_educationContext _context;
+        private IUserService _userService;
 
 
-
-        public CategoryController(zeal_educationContext context)
+        public CategoryController(zeal_educationContext context, IUserService userService)
         {
             _context = context;
+            _userService = userService;
         }
         [HttpPost("add")]
         public IActionResult Add(CategoryModel category)
@@ -24,8 +29,9 @@ namespace Zeal_education.Controllers
             {
                 var newcata = new Category
                 {
-                   Name= category.Name,
-                   Description= category.Description
+                    Name = category.Name,
+                    Description = category.Description,
+                    CreateBy = _userService.GetUserName()
                 };
                 _context.Categories.Add(newcata);
                 _context.SaveChanges();
@@ -83,6 +89,7 @@ namespace Zeal_education.Controllers
                     thiscategory.Name = category.Name;
                     thiscategory.Description = category.Description;
                     thiscategory.ModifyAt = DateTime.Now;
+                    thiscategory.ModifyBy = _userService.GetUserName();
                     _context.SaveChanges();
                     return Ok(ResponseMessage.ok("Update successfully", thiscategory));
                 }

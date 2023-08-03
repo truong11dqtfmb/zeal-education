@@ -27,6 +27,14 @@ namespace Zeal_education.Data
         public virtual DbSet<Teacher> Teachers { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseMySql("server=localhost;database=zeal_education;uid=root;pwd=123456", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.34-mysql"));
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -109,9 +117,9 @@ namespace Zeal_education.Data
 
                 entity.HasIndex(e => e.TeacherId, "teacherId");
 
-                entity.Property(e => e.CourceName)
+                entity.Property(e => e.CourseName)
                     .HasMaxLength(50)
-                    .HasColumnName("courceName");
+                    .HasColumnName("courseName");
 
                 entity.Property(e => e.CreateAt)
                     .HasColumnType("timestamp")
@@ -123,7 +131,7 @@ namespace Zeal_education.Data
                     .HasColumnName("create_by");
 
                 entity.Property(e => e.Description)
-                    .HasMaxLength(50)
+                    .HasMaxLength(1000)
                     .HasColumnName("description");
 
                 entity.Property(e => e.Fee)
@@ -249,6 +257,10 @@ namespace Zeal_education.Data
                     .HasColumnName("create_at")
                     .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
+                entity.Property(e => e.CreateBy)
+                    .HasMaxLength(50)
+                    .HasColumnName("create_by");
+
                 entity.Property(e => e.Description)
                     .HasMaxLength(50)
                     .HasColumnName("description");
@@ -264,6 +276,14 @@ namespace Zeal_education.Data
                 entity.Property(e => e.IsActive)
                     .HasColumnName("is_active")
                     .HasDefaultValueSql("'1'");
+
+                entity.Property(e => e.ModifyAt)
+                    .HasColumnType("timestamp")
+                    .HasColumnName("modify_at");
+
+                entity.Property(e => e.ModifyBy)
+                    .HasMaxLength(50)
+                    .HasColumnName("modify_by");
             });
 
             modelBuilder.Entity<User>(entity =>

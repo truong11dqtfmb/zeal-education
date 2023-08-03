@@ -1,21 +1,26 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Zeal_education.Data;
 using Zeal_education.Models;
+using Zeal_education.Services;
 
 namespace Zeal_education.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class TeacherController : ControllerBase
     {
         private zeal_educationContext _context;
+        private IUserService _userService;
 
 
 
-        public TeacherController(zeal_educationContext context)
+        public TeacherController(zeal_educationContext context, IUserService userService)
         {
             _context = context;
+            _userService = userService;
         }
         [HttpPost("add")]
         public IActionResult Add(TeacherModel teacher)
@@ -27,6 +32,7 @@ namespace Zeal_education.Controllers
                     FullName = teacher.FullName,
                     Description = teacher.Description,
                     Dob = teacher.Dob,
+                    CreateBy = _userService.GetUserName()
                 };
                 _context.Teachers.Add(newteacher);
                 _context.SaveChanges();
@@ -84,6 +90,8 @@ namespace Zeal_education.Controllers
                     thisteacher.FullName = teacher.FullName;
                     thisteacher.Dob = teacher.Dob;
                     thisteacher.Description = teacher.Description;
+                    thisteacher.ModifyAt = DateTime.Now;
+                    thisteacher.ModifyBy = _userService.GetUserName();
                     _context.SaveChanges();
                     return Ok(ResponseMessage.ok("Update successfully", thisteacher));
                 }
