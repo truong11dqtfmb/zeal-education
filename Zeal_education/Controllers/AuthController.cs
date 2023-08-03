@@ -9,6 +9,8 @@ using Zeal_education.Models;
 using System.Net.Mail;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
+using Zeal_education.Services;
+using Zeal_education.Utils;
 
 namespace Zeal_education.Controllers
 {
@@ -18,15 +20,16 @@ namespace Zeal_education.Controllers
     {
         private zeal_educationContext _context;
         private IConfiguration _configuration;
-        public static User systemuser;
+        private IUserService _userService;
         private static User newuser;
         private static string verifi_OTP;
 
 
-        public AuthController(zeal_educationContext context, IConfiguration configuration)
+        public AuthController(zeal_educationContext context, IConfiguration configuration, IUserService userService)
         {
             _context = context;
             _configuration = configuration;
+            _userService = userService;
         }
         [HttpPost("registor")]
         public IActionResult Registor(RegistorModel user)
@@ -48,15 +51,15 @@ namespace Zeal_education.Controllers
                         FullName = user.FullName,
                     };
 
-                    verifi_OTP = CreateRandomString(6);
+                    verifi_OTP = Common.CreateRandomString(6);
                     string body = "Your code verify is: " + verifi_OTP;
-                    sendEmail("Verifry Email", body, newuser.Email);
+                    Common.sendEmail("Verifry Email", body, newuser.Email);
 
-                    return Ok(ResponseMessage.ok("please verify your email. "));
+                    return Ok(ResponseMessage.ok("Please verify your email"));
                 }
                 else
                 {
-                    return BadRequest(ResponseMessage.error("Email has already existed "));
+                    return BadRequest(ResponseMessage.error("Email has already existed"));
                 }
 
             }
@@ -82,7 +85,7 @@ namespace Zeal_education.Controllers
         {
             if (user != null)
             {
-                systemuser = _context.Users.SingleOrDefault(x => x.Email == user.Email && x.Password == Common.Hash(user.Password) && x.IsActive == true);
+                var systemuser = _context.Users.SingleOrDefault(x => x.Email == user.Email && x.Password == Common.Hash(user.Password) && x.IsActive == true);
 
                 if (systemuser != null)
                 {
@@ -100,17 +103,24 @@ namespace Zeal_education.Controllers
             }
         }
 
+        [HttpGet("getcurrentuser")]
+        public IActionResult GetCurrent()
+        {
+            var username = _userService.GetUserName();
+            return Ok(username);
+        }
+
         [HttpPut("resestpassword")]
         public IActionResult ResetPassword(string email)
         {
             var user = _context.Users.SingleOrDefault(x => x.Email == email && x.IsActive == true);
             if (user != null)
             {
-                string resetpassword = CreateRandomString(10);
+                string resetpassword = Common.CreateRandomString(10);
                 user.Password = Common.Hash(resetpassword);
                 _context.SaveChanges();
                 string body = "Your Password is: " + resetpassword;
-                sendEmail("Reset Password", body, email);
+                Common.sendEmail("Reset Password", body, email);
                 return Ok(ResponseMessage.ok("We've sent new password to your email, please check your email"));
             }
             return BadRequest(ResponseMessage.error("Your email hasn't been used"));
@@ -120,17 +130,15 @@ namespace Zeal_education.Controllers
         [Authorize(Roles = "User")]
         public IActionResult ChangePassword(ChangePasswordModel changepass)
         {
-            var thisuser = _context.Users.SingleOrDefault(x => x.Id == systemuser.Id && x.IsActive == true);
+            var thisuser =  _context.Users.SingleOrDefault(x => x.Email == _userService.GetUserName());
             if (Common.Hash(changepass.CurrentPassword) == thisuser.Password)
             {
                 thisuser.Password = Common.Hash(changepass.NewPassword);
                 _context.SaveChanges();
-                systemuser = thisuser;
                 return Ok(ResponseMessage.ok("Change password sucessfully"));
             }
             return BadRequest(ResponseMessage.error("Your current password is incorrect"));
         }
-
 
         private string createToken(User user)
         {
@@ -138,7 +146,7 @@ namespace Zeal_education.Controllers
             var rolename = userrole.RoleName;
             List<Claim> claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.Name, user.FullName),
+                new Claim(ClaimTypes.Name, user.Email),
                 new Claim(ClaimTypes.Role, rolename)
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Key").Value));
@@ -152,37 +160,5 @@ namespace Zeal_education.Controllers
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
             return jwt;
         }
-        private void sendEmail(string subject, string body, string to)
-        {
-            string fromMail = "zealeducationa@gmail.com";
-            string fromPassword = "pzmclcfqeqfwowhy";
-
-            MailMessage message = new MailMessage();
-            message.From = new MailAddress(fromMail);
-            message.Subject = subject;
-            message.To.Add(new MailAddress(to));
-            message.Body = body;
-            message.IsBodyHtml = false;
-
-            var smtpClient = new SmtpClient("smtp.gmail.com")
-            {
-                Port = 587,
-                Credentials = new NetworkCredential(fromMail, fromPassword),
-                EnableSsl = true
-            };
-            smtpClient.Send(message);
-        }
-        private string CreateRandomString(int length)
-        {
-            Random RNG = new Random();
-            var rString = "";
-            for (var i = 0; i < length; i++)
-            {
-                rString += ((char)(RNG.Next(1, 26) + 64)).ToString().ToLower();
-            }
-            return rString;
-        }
-
-        
     }
 }

@@ -153,3 +153,8 @@ D:\github\zeal-education\Zeal_education\bin\Debug\net6.0\System.Security.Cryptog
 D:\github\zeal-education\Zeal_education\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
 D:\github\zeal-education\Zeal_education\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
 D:\github\zeal-education\Zeal_education\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+D:\github\zeal-education\Zeal_education\bin\Debug\net6.0\MySql.Data.dll
+D:\github\zeal-education\Zeal_education\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\github\zeal-education\Zeal_education\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\github\zeal-education\Zeal_education\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\github\zeal-education\Zeal_education\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll

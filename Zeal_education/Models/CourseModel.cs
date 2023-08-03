@@ -2,7 +2,7 @@
 {
     public class CourseModel
     {
-        public string? CourceName { get; set; }
+        public string? CourseName { get; set; }
         public string? Title { get; set; }
         public string? Fee { get; set; }
         public int? CategoryId { get; set; }

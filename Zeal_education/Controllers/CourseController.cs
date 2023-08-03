@@ -1,20 +1,26 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Zeal_education.Data;
 using Zeal_education.Models;
+using Zeal_education.Services;
+using Zeal_education.Utils;
 
 namespace Zeal_education.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles ="Admin")]
     public class CourseController : ControllerBase
     {
         private zeal_educationContext _context;
+        private IUserService _userService;
 
 
 
-        public CourseController(zeal_educationContext context)
+        public CourseController(zeal_educationContext context, IUserService userService)
         {
+            _userService = userService;
             _context = context;
         }
         [HttpPost("add")]
@@ -24,12 +30,13 @@ namespace Zeal_education.Controllers
             {
                 var newcourse = new Course
                 {
-                    CourceName = course.CourceName,
-                    Description= course.Description,
-                    CategoryId= course.CategoryId,
-                    TeacherId= course.TeacherId,
+                    CourseName = course.CourseName,
+                    Description = course.Description,
+                    CategoryId = course.CategoryId,
+                    TeacherId = course.TeacherId,
                     Fee = course.Fee,
-                    Title = course.Title 
+                    Title = course.Title,
+                    CreateBy = _userService.GetUserName()
                 };
                 _context.Courses.Add(newcourse);
                 _context.SaveChanges();
@@ -84,13 +91,14 @@ namespace Zeal_education.Controllers
                 var thiscourse = _context.Courses.SingleOrDefault(x => x.Id == id && x.IsActive == true);
                 if (thiscourse != null)
                 {
-                    thiscourse.CourceName = course.CourceName;
+                    thiscourse.CourseName = course.CourseName;
                     thiscourse.Fee = course.Fee;
                     thiscourse.Title = course.Title;
                     thiscourse.TeacherId = course.TeacherId;
                     thiscourse.CategoryId = course.CategoryId;
                     thiscourse.Description = course.Description;
                     thiscourse.ModifyAt = DateTime.Now;
+                    thiscourse.ModifyBy = _userService.GetUserName();
                     _context.SaveChanges();
                     return Ok(ResponseMessage.ok("Update successfully", thiscourse));
                 }
