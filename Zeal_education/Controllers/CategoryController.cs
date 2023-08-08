@@ -48,6 +48,10 @@ namespace Zeal_education.Controllers
         {
             try
             {
+                if(_context.Courses.Any(x => x.CategoryId == id)) 
+                {
+                    return BadRequest(ResponseMessage.error("You need to delete course first"));
+                }
                 var category = _context.Categories.SingleOrDefault(x => x.Id == id && x.IsActive == true);
                 if (category != null)
                 {
@@ -63,12 +67,14 @@ namespace Zeal_education.Controllers
             }
         }
         [HttpGet("getall")]
+        [AllowAnonymous]
         public IActionResult Get()
         {
             var list = _context.Categories.Where(x => x.IsActive == true).ToList();
             return Ok(ResponseMessage.ok("Get data succesfully", list));
         }
         [HttpGet("getbyid/{id}")]
+        [AllowAnonymous]
         public IActionResult GetId(int id)
         {
             var category = _context.Categories.SingleOrDefault(x => x.Id == id && x.IsActive == true);

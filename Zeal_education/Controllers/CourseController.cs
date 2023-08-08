@@ -68,12 +68,14 @@ namespace Zeal_education.Controllers
             }
         }
         [HttpGet("getall")]
+        [AllowAnonymous]
         public IActionResult Get()
         {
             var list = _context.Courses.Where(x => x.IsActive == true).ToList();
             return Ok(ResponseMessage.ok("Get data succesfully", list));
         }
         [HttpGet("getbyid/{id}")]
+        [AllowAnonymous]
         public IActionResult GetId(int id)
         {
             var course = _context.Courses.SingleOrDefault(x => x.Id == id && x.IsActive == true);
@@ -81,7 +83,29 @@ namespace Zeal_education.Controllers
             {
                 return Ok(ResponseMessage.ok("Get data successfully", course));
             }
-            return NotFound(ResponseMessage.error("Teacher not found"));
+            return NotFound(ResponseMessage.error("Course not found"));
+        }
+        [HttpGet("getbycategory/{id}")]
+        [AllowAnonymous]
+        public IActionResult GetByCata(int id)
+        {
+            var course = _context.Courses.SingleOrDefault(x => x.CategoryId == id && x.IsActive == true);
+            if (course != null)
+            {
+                return Ok(ResponseMessage.ok("Get data successfully", course));
+            }
+            return NotFound(ResponseMessage.error("Course not found"));
+        }        
+        [HttpGet("getbyteacher/{id}")]
+        [AllowAnonymous]
+        public IActionResult GetByTeacher(int id)
+        {
+            var course = _context.Courses.SingleOrDefault(x => x.TeacherId == id && x.IsActive == true);
+            if (course != null)
+            {
+                return Ok(ResponseMessage.ok("Get data successfully", course));
+            }
+            return NotFound(ResponseMessage.error("Course not found"));
         }
         [HttpPut("update/{id}")]
         public IActionResult Update(int id, CourseModel course)
@@ -102,7 +126,7 @@ namespace Zeal_education.Controllers
                     _context.SaveChanges();
                     return Ok(ResponseMessage.ok("Update successfully", thiscourse));
                 }
-                return NotFound(ResponseMessage.error("Teacher not found"));
+                return NotFound(ResponseMessage.error("Course not found"));
             }
             catch (Exception ex)
             {
