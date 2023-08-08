@@ -89,7 +89,7 @@ namespace Zeal_education.Controllers
         [AllowAnonymous]
         public IActionResult GetByCata(int id)
         {
-            var course = _context.Courses.SingleOrDefault(x => x.CategoryId == id && x.IsActive == true);
+            var course = _context.Courses.Where(x => x.CategoryId == id && x.IsActive == true);
             if (course != null)
             {
                 return Ok(ResponseMessage.ok("Get data successfully", course));
@@ -100,7 +100,7 @@ namespace Zeal_education.Controllers
         [AllowAnonymous]
         public IActionResult GetByTeacher(int id)
         {
-            var course = _context.Courses.SingleOrDefault(x => x.TeacherId == id && x.IsActive == true);
+            var course = _context.Courses.Where(x => x.TeacherId == id && x.IsActive == true);
             if (course != null)
             {
                 return Ok(ResponseMessage.ok("Get data successfully", course));
