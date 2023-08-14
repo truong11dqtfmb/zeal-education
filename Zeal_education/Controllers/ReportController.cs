@@ -21,9 +21,17 @@ namespace Zeal_education.Controllers
         }
 
         [HttpGet("numberofcoursebycategory")]
-        public IActionResult Get()
+        public IActionResult GetNumberOfCourseByCategory()
         {
             var list = UltilSql.GetNumberOfCourseByCategory();
+            return Ok(ResponseMessage.ok("Get Data successfully", list));
+        }
+
+
+        [HttpGet("numberofcoursebyteacher")]
+        public IActionResult GetNumberOfCourseByTeacher()
+        {
+            var list = UltilSql.GetNumberOfCourseByTeacher();
             return Ok(ResponseMessage.ok("Get Data successfully", list));
         }
     }
