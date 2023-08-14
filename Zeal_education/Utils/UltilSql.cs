@@ -32,5 +32,28 @@ namespace Zeal_education.Utils
             }
             return list;
         }
+
+        public static List<ReportModel> GetNumberOfCourseByTeacher()
+        {
+            List<ReportModel> list = new List<ReportModel>();
+            using (MySqlConnection sqlConnection = new MySqlConnection(_connectionstring))
+            {
+                sqlConnection.Open();
+                string query = "SELECT FullName, COUNT(*) as NumberOfCourse FROM Course JOIN Teacher ON Teacher .Id= Course.TeacherId GROUP BY FullName";
+                MySqlCommand command = new MySqlCommand(query, sqlConnection);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    ReportModel report = new ReportModel()
+                    {
+                        name = reader.GetString("Name"),
+                        numberofcourse = reader.GetInt32("NumberOfCourse"),
+                    };
+                    list.Add(report);
+                }
+            }
+            return list;
+        }
     }
 }

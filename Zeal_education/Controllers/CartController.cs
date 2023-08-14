@@ -37,6 +37,17 @@ namespace Zeal_education.Controllers
                 {
                     var cart = _context.Carts.SingleOrDefault(x => x.UserId == user.Id && x.IsActive == true);
 
+                    if(cart == null)
+                    {
+                        Cart c = new Cart
+                        {
+                            UserId = user.Id
+                        };
+                        cart = c;
+                        _context.Carts.Add(c);
+                        _context.SaveChanges();
+                    }
+
                     int cartId = cart.Id;
 
                     var listCartItem = _context.Cartitems.Where(x => x.CartId == cartId && x.IsActive == true).ToList();
