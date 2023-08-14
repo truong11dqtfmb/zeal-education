@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Zeal_education.Data
 {
@@ -13,6 +14,7 @@ namespace Zeal_education.Data
         public int Id { get; set; }
         public int? UserId { get; set; }
         public bool? IsActive { get; set; }
+        [JsonIgnore]
 
         public virtual ICollection<Cartitem> Cartitems { get; set; }
     }
