@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LXYHJXgTO3XYj7q5Rc42swILQtT+68OsDRx2J+aikl/IbSvwfQzpQLgld4bMNUeq4aJ4wM+5x1TXfdbHXkEQWQ==",
+  "dgSpecHash": "WM+G75Up8QdR1Aj0bs3dPCdvCsAJ/+Wnev8alXR2X7bZbR3nsWg77uPJfnR/3L2ECk7VG/Px1/A2CUnjSedBfA==",
   "success": true,
-  "projectFilePath": "D:\\github\\zeal-education\\Zeal_education\\Zeal_education.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Desktop\\zeal-education\\Zeal_education\\Zeal_education.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

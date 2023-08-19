@@ -1,9 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 
 export default function
     Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+    }
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const handleApi = () => {
+        console.log({ email, password });
+        axios.post('https://localhost:7215/api/Auth/login', {
+            email: email,
+            password: password
+        })
+        .then(result => {
+            console.log(result,"result===");
+        })
+        
+        .catch(err => {
+            console.error(err);
+        })
+    }
+
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
@@ -36,14 +62,14 @@ export default function
             <form className="form">
                 <p className="form-title">Sign in to your account</p>
                 <div className="input-container">
-                    <input type="email" placeholder="Enter email" />
+                    <input value={email} onChange={handleEmail} type="email" placeholder="Enter email" />
                     <span>
                     </span>
                 </div>
                 <div className="input-container">
-                    <input type="password" placeholder="Enter password" />
+                    <input value={password} onChange={handlePassword} type="password" placeholder="Enter password" />
                 </div>
-                <button type="submit" className="submit">
+                <button onClick={handleApi} type="submit" className="submit">
                     Sign in
                 </button>
                 <p className="signup-link">

@@ -28,9 +28,9 @@ export default function
   return (
     <div>
         {/* <!-- Spinner Start --> */}
-    {/* <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style={{width: '3rem',  height: '3rem'}} role="status">
-            <span class="sr-only">Loading...</span>
+    {/* <div id="spinner" className="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div className="spinner-border text-primary" style={{width: '3rem',  height: '3rem'}} role="status">
+            <span className="sr-only">Loading...</span>
         </div>
     </div> */}
     {/* <!-- Spinner End --> */}
@@ -38,10 +38,10 @@ export default function
 
     {/* <!-- Navbar Start --> */}
     <nav className="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <Link to='/' class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <Link to='/' className="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h2 className="m-0 text-primary"><i className="fa fa-book me-3"></i>Zeal Education Manager</h2>
         </Link>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <button type="button" className="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
@@ -59,7 +59,7 @@ export default function
                 </div>
                 <a href="contact.html" className="nav-item nav-link">Contact</a>
             </div>
-            <Link to="/login" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></Link>
+            <Link to="/login" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i className="fa fa-arrow-right ms-3"></i></Link>
         </div>
     </nav>
      {/* Navbar End  */}
@@ -261,7 +261,7 @@ export default function
                             </div>
                             <h5 className="mb-4">Web Design & Development Course for Beginners</h5>
                         </div>
-                        <div class="d-flex border-top">
+                        <div className="d-flex border-top">
                             <small className="flex-fill text-center border-end py-2"><i className="fa fa-user-tie text-primary me-2"></i>John Doe</small>
                             <small className="flex-fill text-center border-end py-2"><i className="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
                             <small className="flex-fill text-center py-2"><i className="fa fa-user text-primary me-2"></i>30 Students</small>
@@ -273,8 +273,8 @@ export default function
                         <div className="position-relative overflow-hidden">
                             <img className="img-fluid" src={course2} alt=""/>
                             <div className="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style={{borderRadius: '30px 0 0 30px'}}>Read More</a>
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style={{borderRadius: '0 30px 30px 0'}}>Join Now</a>
+                                <a href="#" className="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style={{borderRadius: '30px 0 0 30px'}}>Read More</a>
+                                <a href="#" className="flex-shrink-0 btn btn-sm btn-primary px-3" style={{borderRadius: '0 30px 30px 0'}}>Join Now</a>
                             </div>
                         </div>
                         <div className="text-center p-4 pb-0">
@@ -287,9 +287,9 @@ export default function
                                 <small className="fa fa-star text-primary"></small>
                                 <small>(123)</small>
                             </div>
-                            <h5 class="mb-4">Web Design & Development Course for Beginners</h5>
+                            <h5 className="mb-4">Web Design & Development Course for Beginners</h5>
                         </div>
-                        <div class="d-flex border-top">
+                        <div className="d-flex border-top">
                             <small className="flex-fill text-center border-end py-2"><i className="fa fa-user-tie text-primary me-2"></i>John Doe</small>
                             <small className="flex-fill text-center border-end py-2"><i className="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
                             <small className="flex-fill text-center py-2"><i className="fa fa-user text-primary me-2"></i>30 Students</small>
@@ -317,7 +317,7 @@ export default function
                             </div>
                             <h5 className="mb-4">Web Design & Development Course for Beginners</h5>
                         </div>
-                        <div class="d-flex border-top">
+                        <div className="d-flex border-top">
                             <small className="flex-fill text-center border-end py-2"><i className="fa fa-user-tie text-primary me-2"></i>John Doe</small>
                             <small className="flex-fill text-center border-end py-2"><i className="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
                             <small className="flex-fill text-center py-2"><i className="fa fa-user text-primary me-2"></i>30 Students</small>
@@ -395,9 +395,9 @@ export default function
                         </div>
                         <div className="position-relative d-flex justify-content-center" style={{marginTop: '-23px'}}>
                             <div className="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a className="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a className="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a className="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                <a className="btn btn-sm-square btn-primary mx-1" href=""><i className="fab fa-facebook-f"></i></a>
+                                <a className="btn btn-sm-square btn-primary mx-1" href=""><i className="fab fa-twitter"></i></a>
+                                <a className="btn btn-sm-square btn-primary mx-1" href=""><i className="fab fa-instagram"></i></a>
                             </div>
                         </div>
                         <div className="text-center p-4">
@@ -432,7 +432,7 @@ export default function
                     <img className="border rounded-circle p-2 mx-auto mb-3" src={testimonial2} style={{width: '80px', height: '80px'}}/>
                     <h5 className="mb-0">Client Name</h5>
                     <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
+                    <div className="testimonial-text bg-light text-center p-4">
                     <p className="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
                     </div>
                 </div>
@@ -486,22 +486,22 @@ export default function
                     <h4 className="text-white mb-3">Gallery</h4>
                     <div className="row g-2 pt-2">
                         <div className="col-4">
-                            <img class="img-fluid bg-light p-1" src={course} alt=""/>
+                            <img className="img-fluid bg-light p-1" src={course} alt=""/>
                         </div>
                         <div className="col-4">
-                            <img class="img-fluid bg-light p-1" src={course2} alt=""/>
+                            <img className="img-fluid bg-light p-1" src={course2} alt=""/>
                         </div>
                         <div className="col-4">
-                            <img class="img-fluid bg-light p-1" src={course3} alt=""/>
+                            <img className="img-fluid bg-light p-1" src={course3} alt=""/>
                         </div>
                         <div className="col-4">
-                            <img class="img-fluid bg-light p-1" src={course2} alt=""/>
+                            <img className="img-fluid bg-light p-1" src={course2} alt=""/>
                         </div>
                         <div className="col-4">
-                            <img class="img-fluid bg-light p-1" src={course3} alt=""/>
+                            <img className="img-fluid bg-light p-1" src={course3} alt=""/>
                         </div>
                         <div className="col-4">
-                            <img class="img-fluid bg-light p-1" src={course} alt=""/>
+                            <img className="img-fluid bg-light p-1" src={course} alt=""/>
                         </div>
                     </div>
                 </div>
@@ -522,7 +522,7 @@ export default function
                         &copy; <a className="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
 
                         
-                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                        Designed By <a className="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
                     </div>
                     <div className="col-md-6 text-center text-md-end">
                         <div className="footer-menu">

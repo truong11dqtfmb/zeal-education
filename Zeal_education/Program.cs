@@ -15,6 +15,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddCors(x => x.AllowAnyHeader()
+      .AllowAnyMethod()
+      .WithOrigins("*"));
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo { Title = "MyAPI", Version = "v1" });
