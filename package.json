@@ -1,0 +1,11 @@
+{
+  "name": "zeal-education",
+  "version": "1.0.0",
+  "description": "usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\r            [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\r            [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\r            [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\r            [--super-prefix=<path>] [--config-env=<name>=<envvar>]\r            <command> [<args>]",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
