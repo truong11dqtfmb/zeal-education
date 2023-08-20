@@ -4,21 +4,21 @@ import { Link } from 'react-router-dom';
 import course from '../img/course-1.jpg'
 import course2 from '../img/course-2.jpg'
 import course3 from '../img/course-3.jpg'
-import about from '../img/about.jpg'
-import carousel1 from '../img/carousel-1.jpg'
-import carousel2 from '../img/carousel-2.jpg'
-import cat1 from '../img/cat-1.jpg'
-import cat2 from '../img/cat-2.jpg'
-import cat3 from '../img/cat-3.jpg'
-import cat4 from '../img/cat-4.jpg'
-import team1 from '../img/team-1.jpg'
-import team2 from '../img/team-2.jpg'
-import team3 from '../img/team-3.jpg'
-import team4 from '../img/team-4.jpg'
-import testimonial1 from '../img/testimonial-1.jpg'
-import testimonial2 from '../img/testimonial-2.jpg'
-import testimonial3 from '../img/testimonial-3.jpg'
-import testimonial4 from '../img/testimonial-4.jpg'
+// import about from '../img/about.jpg'
+// import carousel1 from '../img/carousel-1.jpg'
+// import carousel2 from '../img/carousel-2.jpg'
+// import cat1 from '../img/cat-1.jpg'
+// import cat2 from '../img/cat-2.jpg'
+// import cat3 from '../img/cat-3.jpg'
+// import cat4 from '../img/cat-4.jpg'
+// import team1 from '../img/team-1.jpg'
+// import team2 from '../img/team-2.jpg'
+// import team3 from '../img/team-3.jpg'
+// import team4 from '../img/team-4.jpg'
+// import testimonial1 from '../img/testimonial-1.jpg'
+// import testimonial2 from '../img/testimonial-2.jpg'
+// import testimonial3 from '../img/testimonial-3.jpg'
+// import testimonial4 from '../img/testimonial-4.jpg'
 
 
 
@@ -47,17 +47,8 @@ export default function
         <div className="collapse navbar-collapse" id="navbarCollapse">
             <div className="navbar-nav ms-auto p-4 p-lg-0">
                 <Link to='/' className="nav-item nav-link active">Home</Link>
-                <a href="about.html" className="nav-item nav-link">About</a>
                 <Link to='/course' className="nav-item nav-link">Courses</Link>
-                <div className="nav-item dropdown">
-                    <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div className="dropdown-menu fade-down m-0">
-                        <a href="team.html" className="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" className="dropdown-item">Testimonial</a>
-                        <a href="404.html" className="dropdown-item">404 Page</a>
-                    </div>
-                </div>
-                <a href="contact.html" className="nav-item nav-link">Contact</a>
+                <Link to='/cart' className="nav-item nav-link">Cart</Link>
             </div>
             <Link to="/login" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></Link>
         </div>
