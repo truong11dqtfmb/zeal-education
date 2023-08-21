@@ -4,21 +4,7 @@ import { Link } from 'react-router-dom';
 import course from '../img/course-1.jpg'
 import course2 from '../img/course-2.jpg'
 import course3 from '../img/course-3.jpg'
-// import about from '../img/about.jpg'
-// import carousel1 from '../img/carousel-1.jpg'
-// import carousel2 from '../img/carousel-2.jpg'
-// import cat1 from '../img/cat-1.jpg'
-// import cat2 from '../img/cat-2.jpg'
-// import cat3 from '../img/cat-3.jpg'
-// import cat4 from '../img/cat-4.jpg'
-// import team1 from '../img/team-1.jpg'
-// import team2 from '../img/team-2.jpg'
-// import team3 from '../img/team-3.jpg'
-// import team4 from '../img/team-4.jpg'
-// import testimonial1 from '../img/testimonial-1.jpg'
-// import testimonial2 from '../img/testimonial-2.jpg'
-// import testimonial3 from '../img/testimonial-3.jpg'
-// import testimonial4 from '../img/testimonial-4.jpg'
+
 
 
 
